@@ -49,7 +49,7 @@ UserRoute.post("/login", async (req, res) => {
     const { emailOrPhone, password } = req.body;
 
     // Checking if the user exists by email
-    const user = await UserModel.findOne({ email: emailOrPhone });
+    let user = await UserModel.findOne({ email: emailOrPhone });
 
     if (!user) {
       // Checking if the user exists by phone no.
@@ -73,7 +73,7 @@ UserRoute.post("/login", async (req, res) => {
       .status(200)
       .json({ msg: "Login Successfull", userName: user.userName, token });
   } catch (error) {
-    console.error(error);
+    console.error("User LogIn Error:-", error);
     res.status(500).json({ msg: "User login error!" });
   }
 });
