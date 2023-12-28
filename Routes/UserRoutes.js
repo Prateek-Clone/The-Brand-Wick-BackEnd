@@ -19,7 +19,9 @@ UserRoute.post("/signup", async (req, res) => {
     // Checking if user phone already exists
     const existingUserPhone = await UserModel.findOne({ phone });
     if (existingUserPhone) {
-      return res.status(400).json({ msg: "Phone No. already registered!" });
+      return res
+        .status(400)
+        .json({ msg: "This phone number has already been registered!" });
     }
 
     // Hashing the password
