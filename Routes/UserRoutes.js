@@ -67,7 +67,9 @@ UserRoute.post("/login", async (req, res) => {
     }
 
     // Generating JWT token
-    const token = jwt.sign({ userId: user._id }, "TheBrandWick");
+    const token = jwt.sign({ userId: user._id }, "TheBrandWick", {
+      expiresIn: "1h",
+    });
 
     res
       .status(200)
